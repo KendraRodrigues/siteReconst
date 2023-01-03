@@ -1,4 +1,6 @@
-CREATE TABLE skefesa;
+CREATE DATABASE skefesa;
+USE skefesa;
+
  -- TABELAS --
 CREATE TABLE administrador 
 (
