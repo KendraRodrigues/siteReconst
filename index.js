@@ -15,8 +15,8 @@ const Professor = require('./model/Professor');
 var mysql = require('mysql');
 var con = mysql.createConnection({
   host: "localhost",
-  user: "",
-  password: "",
+  user: "grupo",
+  password: "12345678",
   database: "skefesa"
 });
 
@@ -31,4 +31,19 @@ app.get('/', function(req, res){
 
 app.get('/professores', function(req, res){
 	res.sendFile(__dirname + '/views/professor/form.html');
+});
+
+app.post('/salvarProfessor', function(req, res){
+	var p = new Professor();
+
+  p.setMatricula(req.body.matricula);
+  p.setSenha(req.body.senha);
+  p.setNome(req.body.nome);
+  p.setTelefone(req.body.telefone);
+  p.setEmail(req.body.e_mail);
+  // Inserir titulações
+	
+  var retorno = p.inserir(con);
+	
+	res.render('cliente/resultado.ejs', {param: p});
 });

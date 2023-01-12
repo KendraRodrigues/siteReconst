@@ -42,7 +42,7 @@ FOREIGN KEY (modalidade_id) REFERENCES modalidades(id)
 CREATE TABLE professores
 (
 id INT NOT NULL AUTO_INCREMENT,
-matrícula INT NOT NULL,
+matricula INT NOT NULL,
 senha VARCHAR (255) NOT NULL,
 nome VARCHAR (255) NOT NULL,
 telefone VARCHAR (12), 
