@@ -1,7 +1,7 @@
 -- Inserts de professores
 USE skefesa;
 
-INSERT INTO professores (matrícula, senha, nome, telefone, e_mail) 
+INSERT INTO professores (matricula, senha, nome, telefone, e_mail) 
 VALUES 
 ('10161', '12345678', 'Gleison Samuel do Nascimento', '51223344556', 'gleison.nascimento@restinga.ifrs.edu.br'),
 ('10162', '124578', 'Roben Castagna Lunardi', '5133445566', 'roben.lunardi@restinga.ifrs.edu.br'),

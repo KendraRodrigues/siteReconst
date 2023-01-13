@@ -34,16 +34,21 @@ app.get('/professores', function(req, res){
 });
 
 app.post('/salvarProfessor', function(req, res){
-	var p = new Professor();
-
-  p.setMatricula(req.body.matricula);
-  p.setSenha(req.body.senha);
-  p.setNome(req.body.nome);
-  p.setTelefone(req.body.telefone);
-  p.setEmail(req.body.e_mail);
-  // Inserir titulações
+  
+  try {
+    var p = new Professor();
+    p.setMatricula(req.body.matricula);
+    p.setSenha(req.body.senha);
+    p.setNome(req.body.nome);
+    p.setTelefone(req.body.telefone);
+    p.setEmail(req.body.e_mail);
+    // Inserir titulações
+    
+    var retorno = p.inserir(con);
+      console.log('Aqui: ' + retorno);
+  } catch (e) {
+      console.log('Erro: '+e.message);
+  }
 	
-  var retorno = p.inserir(con);
-	
-	res.render('cliente/resultado.ejs', {param: p});
+	res.render('professor/resultado.ejs', {param: p, msg: 'Professor registrado com sucesso!!!'});
 });
