@@ -1,11 +1,11 @@
 module.exports = class Professor {
     constructor() {
-        this.matrícula = 0;
+        this.matricula = 0;
         this.senha = ""; 
         this.nome = ""; 
         this.telefone = ""; 
         this.e_mail = ""; 
-        this.titulações = ""; 
+        // this.titulações = ""; 
     }
 // ------------------------ 
     setMatricula(mat) {
@@ -43,12 +43,14 @@ module.exports = class Professor {
         return this.e_mail ;
     }
 // ------------------------ 
-    setTitulacoes(tit) {
-        this.titulações = tit;
-    }
-    getTitulacoes() {
-        return this.titulações;
-    }
+    // setTitulacoes(tit) {
+    //     this.titulações = tit;
+    // }
+    // getTitulacoes() {
+    //     return this.titulações;
+    // }
+
+// ------------------------ TEMPLATE DE SET E GET
 
     // set() {
     //     this. = ;
@@ -59,5 +61,13 @@ module.exports = class Professor {
 
 // ------------------------ CONEXAO DO BANCO
 
+inserir(connection) {
+	  
+    var sql = "INSERT INTO professores (matricula, senha, nome, telefone, e_mail) VALUES (?, ?, ?, ?, ?)";
+
+    connection.query(sql, [this.matricula, this.senha, this.nome, this.telefone, this.e_mail], function (err, result) {
+      if (err) throw err;
+      });
+  }
     
 }
