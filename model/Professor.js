@@ -97,6 +97,28 @@ inserir(connection) {
 	  //if (err) console.error('err from callback: ' + err.stack);
     });
   }
-  
+
+  consultarChave(connection, callback) {
+    var sql = "SELECT * FROM professores WHERE matricula = ?";
+
+    connection.query(sql, [this.matricula], function (err, result) {
+		if (err) throw err;
+		return callback(result);
+    });    
+  }
+
+  atualizar(connection) {
+	try {
+		var sql = "UPDATE professores SET senha = ?, nome = ?, telefone = ?, e_mail = ? WHERE matricula = ?";
+
+		connection.query(sql, [this.senha, this.nome, this.telefone, this.e_mail], function (err, result) {
+		  if (err) throw "teste";
+		  //if (err) console.error('err from callback: ' + err.stack);
+		  });
+	} catch (e) {
+		console.error('err from callback: ' + e.stack);
+		throw e;
+	}
+  }
     
 }
