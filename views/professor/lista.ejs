@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Organizações Tabajara</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Lista de Professores</h1>
+		<hr>
+		<a href="/formProfessor">Novo Professor</a>
+		<table border="1">
+			<tr>
+				<th>Matricula</th>
+                <th>Senha</th>
+				<th>Nome</th>
+				<th>Telefone</th>
+				<th>Email</th>
+			</tr>
+	        <% professores.forEach((p, index) => { %>
+			<tr>
+				<td><%= p.matricula %></td>
+                <td><%= p.senha %></td>
+				<td><%= p.nome %></td>
+				<td><%= p.telefone %></td>
+				<td><%= p.e_mail %></td>
+			</tr>
+			<% }) %>
+		</table>
+	</body>
+</html>

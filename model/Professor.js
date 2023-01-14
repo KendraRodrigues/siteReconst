@@ -69,5 +69,14 @@ inserir(connection) {
       if (err) throw err;
       });
   }
+
+  listar(connection, callback) {
+    var sql = "SELECT * FROM professores";
+
+    connection.query(sql, function (err, result) {
+		if (err) throw err;
+		return callback(result);
+    });    
+  }
     
 }

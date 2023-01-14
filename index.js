@@ -30,6 +30,15 @@ app.get('/', function(req, res){
 });
 
 app.get('/professores', function(req, res){
+
+  var p = new Professor();
+  p.listar(con, function(result){
+    res.render('professor/lista.ejs', {professores: result});
+  })
+
+});
+
+app.get('/formProfessor', function(req, res){
 	res.sendFile(__dirname + '/views/professor/form.html');
 });
 
