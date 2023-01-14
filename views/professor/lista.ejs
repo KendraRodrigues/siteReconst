@@ -6,6 +6,16 @@
 	<body>
 		<h1>Lista de Professores</h1>
 		<hr>
+
+        <form action="filtrarProfessor" method="post">
+
+            <label for="nome">Nome (use % como cartere coringa):</label><br>
+            <input type="text" name="nome" id="nome" size="30"><br><br>
+            
+            <input type="submit" name="filtrar" value="Filtrar">
+        
+        </form>
+
 		<a href="/formProfessor">Novo Professor</a>
 		<table border="1">
 			<tr>

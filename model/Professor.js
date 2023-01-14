@@ -78,5 +78,14 @@ inserir(connection) {
 		return callback(result);
     });    
   }
+
+  pesquisar(connection, callback) {
+    var sql = "SELECT * FROM professores WHERE nome like ?";
+
+    connection.query(sql, [this.nome], function (err, result) {
+		if (err) throw err;
+		return callback(result);
+    });    
+  }
     
 }

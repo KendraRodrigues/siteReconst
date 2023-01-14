@@ -29,6 +29,7 @@ app.get('/', function(req, res){
 	res.sendFile(__dirname + '/views/index.html');
 });
 
+/* Funções de Professores */
 app.get('/professores', function(req, res){
 
   var p = new Professor();
@@ -36,6 +37,19 @@ app.get('/professores', function(req, res){
     res.render('professor/lista.ejs', {professores: result});
   })
 
+});
+
+app.post('/filtrarProfessor', function(req, res){
+	var p = new Professor();
+	p.setNome(req.body.nome);
+	
+	if (p.getNome() == '') {
+    p.setNome('%');
+	}
+	
+	p.pesquisar(con, function(result){
+		res.render('professor/lista.ejs', {professores: result});
+	});
 });
 
 app.get('/formProfessor', function(req, res){
