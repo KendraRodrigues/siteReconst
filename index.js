@@ -75,3 +75,10 @@ app.post('/salvarProfessor', function(req, res){
 	
 	res.render('professor/resultado.ejs', {param: p, msg: 'Professor registrado com sucesso!!!'});
 });
+
+app.post('/excluirProfessor', function(req, res){
+	var p = new Professor();
+	p.setMatricula(req.body.matricula);
+	p.deletar(con);
+	res.render('professor/resultado.ejs', {param: p, msg: 'Professor deletado com sucesso!!!'});
+});

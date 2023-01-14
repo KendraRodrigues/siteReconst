@@ -7,6 +7,7 @@ module.exports = class Professor {
         this.e_mail = ""; 
         // this.titulações = ""; 
     }
+
 // ------------------------ 
     setMatricula(mat) {
         this.matricula = mat;
@@ -87,5 +88,15 @@ inserir(connection) {
 		return callback(result);
     });    
   }
+
+  deletar(connection) {
+	var sql = "DELETE FROM professores WHERE matricula =  ?";
+
+	connection.query(sql, [this.matricula], function (err, result) {
+	  if (err) throw "teste";
+	  //if (err) console.error('err from callback: ' + err.stack);
+    });
+  }
+  
     
 }
