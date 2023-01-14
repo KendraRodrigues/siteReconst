@@ -30,6 +30,7 @@ app.get('/', function(req, res){
 });
 
 /* Funções de Professores */
+
 app.get('/professores', function(req, res){
 
   var p = new Professor();
@@ -60,6 +61,7 @@ app.post('/salvarProfessor', function(req, res){
   
   try {
     var p = new Professor();
+
     p.setMatricula(req.body.matricula);
     p.setSenha(req.body.senha);
     p.setNome(req.body.nome);
@@ -92,15 +94,16 @@ app.post('/gerenciarProfessor', function(req, res){
 	} else {
 		p.setMatricula(req.body.matricula);
 		p.consultarChave(con, function(result){
-			res.render('professor/form.ejs', {professor: result});
+			res.render('professor/form.ejs', {professores: result});
 		});
 	}	
 });
 
 app.post('/atualizarProfessor', function(req, res){
-	try {
-		var p = new Professor();
-
+  try {
+    
+    var p = new Professor();
+    
     p.setMatricula(req.body.matricula);
     p.setSenha(req.body.senha);
     p.setNome(req.body.nome);
@@ -110,7 +113,7 @@ app.post('/atualizarProfessor', function(req, res){
 		var retorno = p.atualizar(con);
 		console.log('Aqui: ' + retorno);
 	} catch (e) {
-		console.log('Erro: '+e.message);
+    console.log('Erro: '+e.message);
 	}
 	res.render('professor/resultado.ejs', {param: p, msg: 'Professor atualizado com sucesso!!!'});
 });
