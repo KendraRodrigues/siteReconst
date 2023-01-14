@@ -62,41 +62,41 @@ module.exports = class Professor {
 
 // ------------------------ CONEXAO DO BANCO
 
-inserir(connection) {
-	  
-    var sql = "INSERT INTO professores (matricula, senha, nome, telefone, e_mail) VALUES (?, ?, ?, ?, ?)";
+    inserir(connection) {
+        
+        var sql = "INSERT INTO professores (matricula, senha, nome, telefone, e_mail) VALUES (?, ?, ?, ?, ?)";
 
-    connection.query(sql, [this.matricula, this.senha, this.nome, this.telefone, this.e_mail], function (err, result) {
+        connection.query(sql, [this.matricula, this.senha, this.nome, this.telefone, this.e_mail], function (err, result) {
       if (err) throw err;
       });
-  }
+    }
 
-  listar(connection, callback) {
-    var sql = "SELECT * FROM professores";
+    listar(connection, callback) {
+        var sql = "SELECT * FROM professores";
 
-    connection.query(sql, function (err, result) {
-		if (err) throw err;
-		return callback(result);
-    });    
-  }
+        connection.query(sql, function (err, result) {
+            if (err) throw err;
+            return callback(result);
+        });    
+    }
 
-  pesquisar(connection, callback) {
-    var sql = "SELECT * FROM professores WHERE nome like ?";
+    pesquisar(connection, callback) {
+        var sql = "SELECT * FROM professores WHERE nome like ?";
 
-    connection.query(sql, [this.nome], function (err, result) {
-		if (err) throw err;
-		return callback(result);
-    });    
-  }
+        connection.query(sql, [this.nome], function (err, result) {
+            if (err) throw err;
+            return callback(result);
+        });    
+    }
 
-  deletar(connection) {
-	var sql = "DELETE FROM professores WHERE matricula =  ?";
+    deletar(connection) {
+        var sql = "DELETE FROM professores WHERE matricula =  ?";
 
-	connection.query(sql, [this.matricula], function (err, result) {
-	  if (err) throw "teste";
-	  //if (err) console.error('err from callback: ' + err.stack);
-    });
-  }
+        connection.query(sql, [this.matricula], function (err, result) {
+        if (err) throw "teste";
+        //if (err) console.error('err from callback: ' + err.stack);
+        });
+    }
   
     
 }
