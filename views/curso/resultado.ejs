@@ -11,14 +11,14 @@
 			<h1 align="center">Cadastro de Professor</h1>
 		</div>
 		<div id="corpo">
-			<p style="color: #000000; font-weight: bold;">Dados do Professor</p>
+			<p style="color: #000000; font-weight: bold;">Dados do Curso</p>
 			<ul>
-				<li>Matricula: <%= param.getMatricula()%></li>
-                <li>Senha: <%= param.getSenha()%></li>
 				<li>Nome: <%= param.getNome()%></li>
-				<li>Telefone: <%= param.getTelefone()%></li>
-				<li>Email: <%= param.getEmail()%></li>
-                <!-- Inserir titulações -->
+				<li>Número: <%= param.getQuantosPeriodos()%></li>
+				<li>Tipo de períodos: <%= param.getTipoPeriodo()%></li>
+				<li>Modalidade: <%= param.getModalidadeId().getId()%></li>
+				<li>Turno: <%= param.getTurnoId().getId()%></li>
+
 			</ul>
 		</div>
 		<div id="rodape">

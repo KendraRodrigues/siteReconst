@@ -1,6 +1,14 @@
 module.exports = class Modalidade {
     constructor() {
+        this.id = 0;
         this.nome = "";
+    }
+
+    setId(i) {
+        this.id = i;
+    }
+    getId() {
+        return this.id;
     }
 
     setNome(n) {
@@ -48,5 +56,28 @@ module.exports = class Modalidade {
         //if (err) console.error('err from callback: ' + err.stack);
         });
     }
+
+    // consultarChave(connection, callback) {
+    //     var sql = "SELECT * FROM modalidades WHERE id = ?";
+    
+    //     connection.query(sql, [this.id], function (err, result) {
+    //         if (err) throw err;
+    //         return callback(result);
+    //     });    
+    //   }
+
+    //   atualizar(connection) {
+    //     try {
+    //         var sql = "UPDATE modalidades SET nome = ?  WHERE id = ?";
+    
+    //         connection.query(sql, [this.nome, this.id], function (err, result) {
+    //           //if (err) throw "teste";
+    //           if (err) console.error('err from callback: ' + err.stack);
+    //           });
+    //     } catch (e) {
+    //         console.error('err from callback: ' + e.stack);
+    //         throw e;
+    //     }
+    //   }
 
 }

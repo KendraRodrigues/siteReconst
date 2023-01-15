@@ -4,10 +4,10 @@
 		<meta charset="UTF-8">
 	</head>
 	<body>
-		<h1>Lista de Modalidades</h1>
+		<h1>Lista de Cursos</h1>
 		<hr>
 
-        <form action="/filtrarModalidade" method="post">
+        <form action="/filtrarCurso" method="post">
 
             <label for="nome">Nome (use % como cartere coringa):</label><br>
             <input type="text" name="nome" id="nome" size="30"><br><br>
@@ -16,23 +16,29 @@
         
         </form>
 
-		<a href="/formModalidade">Nova Modalidade</a> &nbsp;
+		<a href="/formCurso">Novo Curso</a> &nbsp;
 		<a href="/">Voltar para Tela Principal</a>&nbsp;
 
-		<form action="/gerenciarModalidade" method="post">
+		<form action="/gerenciarCurso" method="post">
 			<input type="submit" name="acao" value="Excluir">
 			<input type="submit" name="acao" value="Atualizar">
 			<table border="1">
 				<tr>
 					<th>Seleção</th>
+					<th>Nome</th>
+					<th>Número de períodos</th>
+					<th>Tipo de períodos</th>
 					<th>Modalidade</th>
-					<th>Id</th>
+					<th>Turno</th>
 				</tr>
-				<% modalidades.forEach((m, index) => { %>
+				<% cursos.forEach((c, index) => { %>
 				<tr>
-					<td><input type="radio" name="nome" value="<%= m.nome %>"></td>
-					<td><%= m.nome %></td>
-					<td><%= m.id %></td>
+					<td><input type="radio" name="nome" value="<%= c.nome %>"></td>
+					<td><%= c.nome %></td>
+					<td><%= c.quantidade_periodo %></td>
+					<td><%= c.tipo_periodo %></td>
+					<td><%= c.modalidade_id %></td>
+					<td><%= c.turno_id %></td>
 				</tr>
 				<% }) %>
 			</table>

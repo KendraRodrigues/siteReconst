@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 const Professor = require('./model/Professor');
 const Modalidade = require('./model/Modalidade');
 const Turno = require('./model/Turno');
+const Curso = require('./model/Curso');
 
 var mysql = require('mysql');
 var con = mysql.createConnection({
@@ -150,6 +151,7 @@ app.post('/salvarModalidade', function(req, res){
 
   try {
     var m = new Modalidade();
+    m.setId(req.body.id);
     m.setNome(req.body.nome);
 
     var retorno = m.inserir(con);
@@ -161,11 +163,41 @@ app.post('/salvarModalidade', function(req, res){
   res.render('modalidade/resultado.ejs', {param: m, msg: 'Modalidade registrada com sucesso!!!'});
 })
 
-app.post('/excluirModalidade', function(req, res){
+// app.post('/excluirModalidade', function(req, res){
+// 	var m = new Modalidade();
+// 	m.setNome(req.body.nome);
+// 	m.deletar(con);
+// 	res.render('modalidade/resultado.ejs', {param: m, msg: 'Modalidade deletada com sucesso!!!'});
+// });
+
+app.post('/gerenciarModalidade', function(req, res){
 	var m = new Modalidade();
-	m.setNome(req.body.nome);
-	m.deletar(con);
-	res.render('modalidade/resultado.ejs', {param: m, msg: 'Modalidade deletada com sucesso!!!'});
+	if (req.body.acao == 'Excluir') {
+		m.setNome(req.body.nome);
+	  m.deletar(con);
+		res.render('modalidade/resultado.ejs', {param: m, msg: 'Modalidade deletada com sucesso!!!'});
+	} else {
+		m.setNome(req.body.nome);
+		m.consultarChave(con, function(result){
+			res.render('modalidade/form.ejs', {modalidades: result});
+		});
+	}	
+});
+
+app.post('/atualizarModalidade', function(req, res){
+  try {
+    
+    var m = new Modalidade();
+    
+    m.setNome(req.body.nome);
+    // m.setId();
+		
+		var retorno = m.atualizar(con);
+		console.log('Olá: ' + retorno);
+	} catch (e) {
+    console.log('Erro: '+e.message);
+	}
+	res.render('modalidade/resultado.ejs', {param: m, msg: 'Modalidade atualizada com sucesso!!!'});
 });
 
 /* Funções de Turno */
@@ -216,4 +248,85 @@ app.post('/excluirTurno', function(req, res){
 	t.setNome(req.body.nome);
 	t.deletar(con);
 	res.render('turno/resultado.ejs', {param: t, msg: 'Turno deletado com sucesso!!!'});
+});
+
+
+/* Funções de Curso */
+
+app.get('/cursos', function(req, res){
+
+  var c = new Curso();
+  c.listar(con, function(result){
+    res.render('curso/lista.ejs', {cursos: result});
+  })
+
+});
+
+app.post('/filtrarCurso', function(req, res){
+	var c = new Curso();
+	c.setNome(req.body.nome);
+	
+	if (c.getNome() == '') {
+    c.setNome('%');
+	}
+	
+	c.pesquisar(con, function(result){
+		res.render('curso/lista.ejs', {cursos: result});
+	});
+});
+
+app.get('/formCurso', function(req, res){
+	res.sendFile(__dirname + '/views/curso/form.html');
+});
+
+app.post('/salvarCurso', function(req, res){
+  
+  try {
+    var c = new Curso();
+    c.setNome(req.body.nome);
+    c.setQuantosPeriodos(req.body.quantidade_periodo);
+    c.setTipoPeriodo(req.body.tipo_periodo);
+    c.getModalidadeId().setId(req.body.id);
+    c.getTurnoId().setId(req.body.id);
+    
+    var retorno = c.inserir(con);
+      console.log('Aqui: ' + retorno);
+  } catch (e) {
+      console.log('Erro: '+e.message);
+  }
+	
+	res.render('curso/resultado.ejs', {param: c, msg: 'Curso registrado com sucesso!!!'});
+});
+
+app.post('/gerenciarCurso', function(req, res){
+	var c = new Curso();
+	if (req.body.acao == 'Excluir') {
+		c.setNome(req.body.nome);
+	  c.deletar(con);
+		res.render('curso/resultado.ejs', {param: c, msg: 'Curso deletado com sucesso!!!'});
+	} else {
+		c.setNome(req.body.nome);
+		c.consultarChave(con, function(result){
+			res.render('curso/form.ejs', {cursos: result});
+		});
+	}	
+});
+
+app.post('/atualizarCurso', function(req, res){
+  try {
+    
+    var c = new Curso();
+    
+    c.setMatricula(req.body.nome);
+    c.setQuantosPeriodos(req.body.quantidade_periodo);
+    c.setTipoPeriodo(req.body.tipo_periodo);
+    c.getModalidadeId().setId(req.body.id);
+    c.getTurnoId().setId(req.body.id);
+		
+		var retorno = c.atualizar(con);
+		console.log('Aqui: ' + retorno);
+	} catch (e) {
+    console.log('Erro: '+e.message);
+	}
+	res.render('professor/resultado.ejs', {param: c, msg: 'Professor atualizado com sucesso!!!'});
 });

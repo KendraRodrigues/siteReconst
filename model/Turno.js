@@ -1,6 +1,14 @@
 module.exports = class Turno {
     constructor() {
+        this.id = 0;
         this.nome = "";
+    }
+
+    setId(i) {
+        this.id = i;
+    }
+    getId() {
+        return this.id;
     }
 
     setNome(n) {

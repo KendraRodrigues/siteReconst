@@ -6,10 +6,10 @@
 	<body>
 		<h1>Cadastro de Modalidade</h1>
 		<hr>
-		<form action="/salvarModalidade" method="post">
-
+		<form action="/atualizarModalidade" method="post">
+				
 			<label for="nome">Modalidade:</label><br>
-			<input type="text" name="nome" id="nome" size="15"><br><br>
+			<input type="text" name="nome" id="nome" value ="<%= modalidades[0].nome %>" size="15"><br><br>
 	
             <!-- INSERIR TITULAÇÕES -->
 

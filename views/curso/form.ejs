@@ -1,0 +1,32 @@
+<html>
+	<head>
+		<title>Organizações Tabajara</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Cadastro de Cursos</h1>
+		<hr>
+		<form action="/salvarCurso" method="post">
+				
+			<label for="nome">Nome:</label><br>
+			<input type="text" name="nome" id="nome" value="<%= cursos[0].nome %>" size="15" readonly><br><br>
+	
+			<label for="quantidade_periodo">Número de períodos:</label><br>
+			<input type="text" name="quantidade_periodo" id="quantidade_periodo" value="<%= cursos[0].quantidade_periodo %>" size="30"><br><br>
+
+            <label for="tipo_periodo">Tipo de períodos:</label><br>
+			<input type="text" name="tipo_periodo" id="tipo_periodo" value="<%= cursos[0].tipo_periodo %>" size="30"><br><br>
+			
+			<label for="modalidade_id">Modalidade:</label><br>
+			<input type="text" name="modalidade_id" id="modalidade_id" value="<%= cursos[0].modalidade_id %>" size="20"><br><br>
+
+            <label for="turno_id">Turno:</label><br>
+			<input type="text" name="turno_id" id="turno_id" value="<%= cursos[0].turno_id %>" size="20"><br><br>
+			
+            <!-- INSERIR TITULAÇÕES -->
+
+			<input type="submit" name="salvar" value="Salvar">
+			<input type="reset" name="limpar" value="Limpar">
+		</form>
+	</body>
+</html>
