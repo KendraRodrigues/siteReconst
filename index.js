@@ -78,11 +78,44 @@ app.post('/salvarProfessor', function(req, res){
 	res.render('professor/resultado.ejs', {param: p, msg: 'Professor registrado com sucesso!!!'});
 });
 
-app.post('/excluirProfessor', function(req, res){
+// app.post('/excluirProfessor', function(req, res){
+// 	var p = new Professor();
+// 	p.setMatricula(req.body.matricula);
+// 	p.deletar(con);
+// 	res.render('professor/resultado.ejs', {param: p, msg: 'Professor deletado com sucesso!!!'});
+// });
+
+app.post('/gerenciarProfessor', function(req, res){
 	var p = new Professor();
-	p.setMatricula(req.body.matricula);
-	p.deletar(con);
-	res.render('professor/resultado.ejs', {param: p, msg: 'Professor deletado com sucesso!!!'});
+	if (req.body.acao == 'Excluir') {
+		p.setMatricula(req.body.matricula);
+	  p.deletar(con);
+		res.render('professor/resultado.ejs', {param: p, msg: 'Professor deletado com sucesso!!!'});
+	} else {
+		p.setMatricula(req.body.matricula);
+		p.consultarChave(con, function(result){
+			res.render('professor/form.ejs', {professores: result});
+		});
+	}	
+});
+
+app.post('/atualizarProfessor', function(req, res){
+  try {
+    
+    var p = new Professor();
+    
+    p.setMatricula(req.body.matricula);
+    p.setSenha(req.body.senha);
+    p.setNome(req.body.nome);
+    p.setTelefone(req.body.telefone);
+    p.setEmail(req.body.e_mail);
+		
+		var retorno = p.atualizar(con);
+		console.log('Aqui: ' + retorno);
+	} catch (e) {
+    console.log('Erro: '+e.message);
+	}
+	res.render('professor/resultado.ejs', {param: p, msg: 'Professor atualizado com sucesso!!!'});
 });
 
 /* Funções de Modalidades */
