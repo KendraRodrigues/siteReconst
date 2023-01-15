@@ -111,8 +111,8 @@ inserir(connection) {
 	try {
 		var sql = "UPDATE professores SET senha = ?, nome = ?, telefone = ?, e_mail = ? WHERE matricula = ?";
 
-		connection.query(sql, [this.nome, this.telefone, this.endereco, this.cpf], function (err, result) {
-		//   if (err) throw "teste";
+		connection.query(sql, [this.senha, this.nome, this.telefone, this.e_mail, this.matricula], function (err, result) {
+		  //if (err) throw "teste";
 		  if (err) console.error('err from callback: ' + err.stack);
 		  });
 	} catch (e) {
