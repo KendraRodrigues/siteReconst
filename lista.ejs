@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Organizações Tabajara</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Lista de Professores</h1>
+		<hr>
+
+        <form action="/filtrarProfessor" method="post">
+
+            <label for="nome">Nome (use % como cartere coringa):</label><br>
+            <input type="text" name="nome" id="nome" size="30"><br><br>
+            
+            <input type="submit" name="filtrar" value="Filtrar">
+        
+        </form>
+
+		<a href="/formProfessor">Novo Professor</a> &nbsp;
+		<a href="/">Voltar para Tela Principal</a>&nbsp;
+
+		<form action="/gerenciarProfessor" method="post">
+			<input type="submit" name="acao" value="Excluir">
+			<input type="submit" name="acao" value="Atualizar">
+			<table border="1">
+				<tr>
+					<th>Seleção</th>
+					<th>Matricula</th>
+					<th>Senha</th>
+					<th>Nome</th>
+					<th>Telefone</th>
+					<th>Email</th>
+				</tr>
+				<% professores.forEach((p, index) => { %>
+				<tr>
+					<td><input type="radio" name="matricula" value="<%= p.matricula %>"></td>
+					<td><%= p.matricula %></td>
+					<td><%= p.senha %></td>
+					<td><%= p.nome %></td>
+					<td><%= p.telefone %></td>
+					<td><%= p.e_mail %></td>
+				</tr>
+				<% }) %>
+			</table>
+		</form>
+	</body>
+</html>
