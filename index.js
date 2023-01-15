@@ -14,6 +14,7 @@ const Professor = require('./model/Professor');
 const Modalidade = require('./model/Modalidade');
 const Turno = require('./model/Turno');
 const Curso = require('./model/Curso');
+const Aluno = require('./model/Aluno');
 
 var mysql = require('mysql');
 var con = mysql.createConnection({
@@ -329,4 +330,89 @@ app.post('/atualizarCurso', function(req, res){
     console.log('Erro: '+e.message);
 	}
 	res.render('professor/resultado.ejs', {param: c, msg: 'Professor atualizado com sucesso!!!'});
+});
+
+/* Funções de Alunos */
+
+app.get('/alunos', function(req, res){
+
+  var a = new Aluno();
+  a.listar(con, function(result){
+    res.render('aluno/lista.ejs', {alunos: result});
+  })
+
+});
+
+app.post('/filtrarAluno', function(req, res){
+	var a = new Aluno();
+	a.setNome(req.body.nome);
+	
+	if (a.getNome() == '') {
+    a.setNome('%');
+	}
+	
+	a.pesquisar(con, function(result){
+		res.render('aluno/lista.ejs', {alunos: result});
+	});
+});
+
+app.get('/formAluno', function(req, res){
+	res.sendFile(__dirname + '/views/aluno/form.html');
+});
+
+app.post('/salvarAluno', function(req, res){
+  
+  try {
+    var a = new Aluno();
+
+    a.setMatricula(req.body.matricula);
+    a.setSenha(req.body.senha);
+    a.setNome(req.body.nome);
+    a.setTelefone(req.body.telefone);
+    a.setEmail(req.body.email);
+    a.setCursoId(req.body.curso_id);
+    a.setProfessorId(req.body.professor_id);
+    
+    var retorno = a.inserir(con);
+      console.log('Aqui: ' + retorno);
+  } catch (e) {
+      console.log('Erro: '+e.message);
+  }
+	
+	res.render('aluno/resultado.ejs', {param: a, msg: 'Aluno registrado com sucesso!!!'});
+});
+
+app.post('/gerenciarAluno', function(req, res){
+	var a = new Aluno();
+	if (req.body.acao == 'Excluir') {
+		a.setMatricula(req.body.matricula);
+	  a.deletar(con);
+		res.render('aluno/resultado.ejs', {param: a, msg: 'Aluno deletado com sucesso!!!'});
+	} else {
+		a.setMatricula(req.body.matricula);
+		a.consultarChave(con, function(result){
+			res.render('aluno/form.ejs', {alunos: result});
+		});
+	}	
+});
+
+app.post('/atualizarAluno', function(req, res){
+  try {
+    
+    var a = new Aluno();
+    
+    a.setMatricula(req.body.matricula);
+    a.setSenha(req.body.senha);
+    a.setNome(req.body.nome);
+    a.setTelefone(req.body.telefone);
+    a.setEmail(req.body.email);
+    a.setCursoId(req.body.curso_id);
+    a.setProfessorId(req.body.professor_id);
+		
+		var retorno = a.atualizar(con);
+		console.log('Aqui: ' + retorno);
+	} catch (e) {
+    console.log('Erro: '+e.message);
+	}
+	res.render('aluno/resultado.ejs', {param: a, msg: 'Aluno atualizado com sucesso!!!'});
 });
