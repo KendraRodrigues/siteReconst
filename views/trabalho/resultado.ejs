@@ -1,33 +1,44 @@
-<html>
-  <head>
-    <title>Skefesa</title>
-    <meta charset="UTF-8">
-	<link href="estilos.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-	<div id="quadro">
-		<div id="cabecalho">
-			<img src="tabajara.jpg" align="left" width="150" style="padding-top: 10px; padding-left: 10px;">
-			<h1 align="center">Cadastro de Trabalho</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+		<title>Skefesa</title>
+	</head>
+	<body>
+		<div id="grid">
+			<header class="cabecalho-pagina constante">
+				<div class="banner-img">
+					<figure>
+						<img src="../fotos/banner.png" alt="banner" width="100%">
+					</figure>
+				</div>
+			</header>
+
+			<main>
+				<div class="main-pagina principal">
+					<h1>Cadastro de Trabalho</h1>
+					<p>Dados do Trabalho</p>
+					<ul>
+						<li>Título: <%= param.getTitulo()%></li>
+						<li>Resumo: <%= param.getResumo()%></li>
+						<li>Palavras chave: <%= param.getPalavrasChave()%></li>
+						<li>Link: <%= param.getLink()%></li>
+						<li>Autor: <%= param.getAutorId()%></li>
+						<li>Orientador: <%= param.getOrientadorId()%></li>
+					</ul>
+
+					<div id="rodape">
+						<p class="resultado">
+							<%= msg%>
+						</p>
+						
+						<a href="/">Voltar ao Menu Principal</a>
+					</div>
+				</div>
+			</main>
 		</div>
-		<div id="corpo">
-			<p style="color: #000000; font-weight: bold;">Dados do Cliente</p>
-			<ul>
-				<li>Título: <%= param.getTitulo()%></li>
-                <li>Resumo: <%= param.getResumo()%></li>
-				<li>Palavras chave: <%= param.getPalavrasChave()%></li>
-				<li>Link: <%= param.getLink()%></li>
-				<li>Autor: <%= param.getAutorId()%></li>
-				<li>Orientador: <%= param.getOrientadorId()%></li>
-			</ul>
-		</div>
-		<div id="rodape">
-			<p class="resultado">
-				<%= msg%>
-			</p>
-			
-			<a href="/">Voltar ao Menu Principal</a>
-		</div>
-	</div>
-  </body>
+	</body>
 </html>

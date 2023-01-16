@@ -1,33 +1,52 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
-		<title>Skefesa</title>
 		<meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+		<title>Skefesa</title>
 	</head>
 	<body>
-		<h1>Cadastro de Trabalho</h1>
-		<hr>
-		<form action="/atualizarTrabalho" method="post">
-				
-			<label for="titulo">Título:</label><br>
-			<input type="text" name="titulo" id="titulo" value="<%= trabalhos[0].titulo %>" size="15" ><br><br>
+		<div id="grid">
+			<header class="cabecalho-pagina constante">
+				<div class="banner-img">
+					<figure>
+						<img src="../fotos/banner.png" alt="banner" width="100%">
+					</figure>
+				</div>
+			</header>
 
-			<label for="resumo">Resumo:</label><br>
-			<input type="text" name="resumo" id="resumo" value="<%= trabalhos[0].resumo %>" size="15" ><br><br>
+			<main>
+				<div class="main-pagina principal">
+					<h1>Cadastro de Trabalho</h1>
+					<hr>
+					<form action="/atualizarTrabalho" method="post">
+						<fieldset>
+							<label for="titulo">Título:</label><br>
+							<input type="text" name="titulo" id="titulo" value="<%= trabalhos[0].titulo %>" size="15" ><br><br>
 
-			<label for="palavras_chave">Palavras chave:</label><br>
-			<input type="text" name="palavras_chave" id="palavras_chave" value="<%= trabalhos[0].palavras_chave %>" size="15" ><br><br>
+							<label for="resumo">Resumo:</label><br>
+							<input type="text" name="resumo" id="resumo" value="<%= trabalhos[0].resumo %>" size="15" ><br><br>
 
-			<label for="link">Link:</label><br>
-			<input type="text" name="link" id="link" value="<%= trabalhos[0].link %>" size="15" ><br><br>
+							<label for="palavras_chave">Palavras chave:</label><br>
+							<input type="text" name="palavras_chave" id="palavras_chave" value="<%= trabalhos[0].palavras_chave %>" size="15" ><br><br>
 
-			<label for="autor_id">Autor:</label><br>
-			<input type="text" name="autor_id" id="autor_id" value="<%= trabalhos[0].autor_id %>" size="15" ><br><br>
+							<label for="link">Link:</label><br>
+							<input type="text" name="link" id="link" value="<%= trabalhos[0].link %>" size="15" ><br><br>
 
-			<label for="orientador_id">Orientador:</label><br>
-			<input type="text" name="orientador_id" id="orientador_id" value="<%= trabalhos[0].orientador_id %>" size="15" ><br><br>
+							<label for="autor_id">Autor:</label><br>
+							<input type="text" name="autor_id" id="autor_id" value="<%= trabalhos[0].autor_id %>" size="15" ><br><br>
 
-			<input type="submit" name="salvar" value="Salvar">
-			<input type="reset" name="limpar" value="Limpar">
-		</form>
+							<label for="orientador_id">Orientador:</label><br>
+							<input type="text" name="orientador_id" id="orientador_id" value="<%= trabalhos[0].orientador_id %>" size="15" ><br><br>
+
+							<input type="submit" name="salvar" value="Salvar">
+							<input type="reset" name="limpar" value="Limpar">
+						</fieldset>
+					</form>
+				</div>
+			</main>
+		</div>
 	</body>
 </html>

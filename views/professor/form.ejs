@@ -1,32 +1,51 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
-		<title>Skefesa</title>
 		<meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+		<title>Skefesa</title>
 	</head>
 	<body>
-		<h1>Cadastro de Professor</h1>
-		<hr>
-		<form action="/atualizarProfessor" method="post">
-				
-			<label for="matricula">Matricula:</label><br>
-			<input type="text" name="matricula" id="matricula" value="<%= professores[0].matricula %>" size="15" readonly="readonly"><br><br>
-	
-			<label for="senha">Senha:</label><br>
-			<input type="text" name="senha" id="senha" value="<%= professores[0].senha %>" size="30"><br><br>
+		<div id="grid">
+			<header class="cabecalho-pagina constante">
+				<div class="banner-img">
+					<figure>
+						<img src="../fotos/banner.png" alt="banner" width="100%">
+					</figure>
+				</div>
+			</header>
 
-            <label for="nome">Nome:</label><br>
-			<input type="text" name="nome" id="nome" value="<%= professores[0].nome %>" size="30"><br><br>
-			
-			<label for="telefone">Telefone:</label><br>
-			<input type="text" name="telefone" id="telefone" value="<%= professores[0].telefone %>" size="20"><br><br>
+			<main>
+				<div class="main-pagina principal">
+					<h1>Cadastro de Professor</h1>
+					<hr>
+					<form action="/atualizarProfessor" method="post">
+						<fieldset>
+							<label for="matricula">Matricula:</label><br>
+							<input type="text" name="matricula" id="matricula" value="<%= professores[0].matricula %>" size="15" readonly="readonly"><br><br>
+					
+							<label for="senha">Senha:</label><br>
+							<input type="text" name="senha" id="senha" value="<%= professores[0].senha %>" size="30"><br><br>
 
-            <label for="e_mail">Email:</label><br>
-			<input type="text" name="e_mail" id="e_mail" value="<%= professores[0].e_mail %>" size="20"><br><br>
-			
-            <!-- INSERIR TITULAÇÕES -->
+							<label for="nome">Nome:</label><br>
+							<input type="text" name="nome" id="nome" value="<%= professores[0].nome %>" size="30"><br><br>
+							
+							<label for="telefone">Telefone:</label><br>
+							<input type="text" name="telefone" id="telefone" value="<%= professores[0].telefone %>" size="20"><br><br>
 
-			<input type="submit" name="salvar" value="Salvar">
-			<input type="reset" name="limpar" value="Limpar">
-		</form>
+							<label for="e_mail">Email:</label><br>
+							<input type="text" name="e_mail" id="e_mail" value="<%= professores[0].e_mail %>" size="20"><br><br>
+							
+							<!-- INSERIR TITULAÇÕES -->
+
+							<input type="submit" name="salvar" value="Salvar">
+							<input type="reset" name="limpar" value="Limpar">
+						</fieldset>
+					</form>
+				</div>
+			</main>
+		</div>
 	</body>
 </html>

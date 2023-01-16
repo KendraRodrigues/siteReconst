@@ -1,40 +1,59 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
-		<title>Skefesa</title>
 		<meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+		<title>Skefesa</title>
 	</head>
 	<body>
-		<h1>Cadastro de Cursos</h1>
-		<hr>
-		<form action="/salvarCurso" method="post">
-				
-			<label for="nome">Nome:</label><br>
-			<input type="text" name="nome" id="nome" value="<%= cursos[0].nome %>" size="15" readonly><br><br>
-	
-			<label for="quantidade_periodo">Número de períodos:</label><br>
-			<input type="text" name="quantidade_periodo" id="quantidade_periodo" value="<%= cursos[0].quantidade_periodo %>" size="30"><br><br>
+		<div id="grid">
+			<header class="cabecalho-pagina constante">
+				<div class="banner-img">
+					<figure>
+						<img src="../fotos/banner.png" alt="banner" width="100%">
+					</figure>
+				</div>
+			</header>
 
-            <label for="tipo_periodo">Tipo de períodos:</label><br>
-			<input type="text" name="tipo_periodo" id="tipo_periodo" value="<%= cursos[0].tipo_periodo %>" size="30"><br><br>
-			
-			<label for="modalidade_id">Modalidade:</label><br>
-			<input type="text" name="modalidade_id" id="modalidade_id" value="<%= cursos[0].modalidade_id %>" size="20"><br><br>
+			<main>
+				<div class="main-pagina principal">
+					<h1>Cadastro de Cursos</h1>
+					<hr>
+					<form action="/salvarCurso" method="post">
+						<fieldset>
+							<label for="nome">Nome:</label><br>
+							<input type="text" name="nome" id="nome" value="<%= cursos[0].nome %>" size="15" readonly><br><br>
+					
+							<label for="quantidade_periodo">Número de períodos:</label><br>
+							<input type="text" name="quantidade_periodo" id="quantidade_periodo" value="<%= cursos[0].quantidade_periodo %>" size="30"><br><br>
 
-			<!-- <label for="cpf_cliente">Teste de modalidade:</label><br>
-			<select name="cpf_cliente" id="cpf_cliente">
-				<option hidden>-- Selecione uma modalidade --</option>
-				<% modalidades.forEach((m, index) => { %>
-					<option value="<%= m.nome %>"><%= m.nome %></option>
-				<% }) %>
-			</select> -->
+							<label for="tipo_periodo">Tipo de períodos:</label><br>
+							<input type="text" name="tipo_periodo" id="tipo_periodo" value="<%= cursos[0].tipo_periodo %>" size="30"><br><br>
+							
+							<label for="modalidade_id">Modalidade:</label><br>
+							<input type="text" name="modalidade_id" id="modalidade_id" value="<%= cursos[0].modalidade_id %>" size="20"><br><br>
 
-            <label for="turno_id">Turno:</label><br>
-			<input type="text" name="turno_id" id="turno_id" value="<%= cursos[0].turno_id %>" size="20"><br><br>
-			
-            <!-- INSERIR TITULAÇÕES -->
+							<!-- <label for="cpf_cliente">Teste de modalidade:</label><br>
+							<select name="cpf_cliente" id="cpf_cliente">
+								<option hidden>-- Selecione uma modalidade --</option>
+								<% modalidades.forEach((m, index) => { %>
+									<option value="<%= m.nome %>"><%= m.nome %></option>
+								<% }) %>
+							</select> -->
 
-			<input type="submit" name="salvar" value="Salvar">
-			<input type="reset" name="limpar" value="Limpar">
-		</form>
+							<label for="turno_id">Turno:</label><br>
+							<input type="text" name="turno_id" id="turno_id" value="<%= cursos[0].turno_id %>" size="20"><br><br>
+							
+							<!-- INSERIR TITULAÇÕES -->
+
+							<input type="submit" name="salvar" value="Salvar">
+							<input type="reset" name="limpar" value="Limpar">
+						</fieldset>
+					</form>
+				</div>
+			</main>
+		</div>
 	</body>
 </html>

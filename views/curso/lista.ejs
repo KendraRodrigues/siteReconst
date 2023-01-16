@@ -1,47 +1,66 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
-		<title>Skefesa</title>
 		<meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+		<title>Skefesa</title>
 	</head>
 	<body>
-		<h1>Lista de Cursos</h1>
-		<hr>
+		<div id="grid">
+			<header class="cabecalho-pagina constante">
+				<div class="banner-img">
+					<figure>
+						<img src="../fotos/banner.png" alt="banner" width="100%">
+					</figure>
+				</div>
+			</header>
 
-        <form action="/filtrarCurso" method="post">
+			<main>
+				<div class="main-pagina principal">
+					<h1>Lista de Cursos</h1>
+					<hr>
 
-            <label for="nome">Nome (use % como cartere coringa):</label><br>
-            <input type="text" name="nome" id="nome" size="30"><br><br>
-            
-            <input type="submit" name="filtrar" value="Filtrar">
-        
-        </form>
+					<form action="/filtrarCurso" method="post">
+						<fieldset>
+							<label for="nome">Nome (use % como cartere coringa):</label><br>
+							<input type="text" name="nome" id="nome" size="30"><br><br>
+							
+							<input type="submit" name="filtrar" value="Filtrar">
+						</fieldset>
+					</form><br>
 
-		<a href="/formCurso">Novo Curso</a> &nbsp;
-		<a href="/">Voltar para Tela Principal</a>&nbsp;
+					<a href="/formCurso">Novo Curso</a> &nbsp;
+					<a href="/">Voltar para Tela Principal</a>&nbsp;
+					<br><br>
 
-		<form action="/gerenciarCurso" method="post">
-			<input type="submit" name="acao" value="Excluir">
-			<input type="submit" name="acao" value="Atualizar">
-			<table border="1">
-				<tr>
-					<th>Seleção</th>
-					<th>Nome</th>
-					<th>Número de períodos</th>
-					<th>Tipo de períodos</th>
-					<th>Modalidade</th>
-					<th>Turno</th>
-				</tr>
-				<% cursos.forEach((c, index) => { %>
-				<tr>
-					<td><input type="radio" name="nome" value="<%= c.nome %>"></td>
-					<td><%= c.nome %></td>
-					<td><%= c.quantidade_periodo %></td>
-					<td><%= c.tipo_periodo %></td>
-					<td><%= c.modalidade_id %></td>
-					<td><%= c.turno_id %></td>
-				</tr>
-				<% }) %>
-			</table>
-		</form>
+					<form action="/gerenciarCurso" method="post">
+						<input type="submit" name="acao" value="Excluir">
+						<input type="submit" name="acao" value="Atualizar">
+						<table border="1">
+							<tr>
+								<th>Seleção</th>
+								<th>Nome</th>
+								<th>Número de períodos</th>
+								<th>Tipo de períodos</th>
+								<th>Modalidade</th>
+								<th>Turno</th>
+							</tr>
+							<% cursos.forEach((c, index) => { %>
+							<tr>
+								<td><input type="radio" name="nome" value="<%= c.nome %>"></td>
+								<td><%= c.nome %></td>
+								<td><%= c.quantidade_periodo %></td>
+								<td><%= c.tipo_periodo %></td>
+								<td><%= c.modalidade_id %></td>
+								<td><%= c.turno_id %></td>
+							</tr>
+							<% }) %>
+						</table>
+					</form>
+				</div>
+			</main>
+		</div>
 	</body>
 </html>

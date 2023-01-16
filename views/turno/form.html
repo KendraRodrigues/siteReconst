@@ -1,20 +1,37 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
-		<title>Skefesa</title>
 		<meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="/style.css">
+		<title>Skefesa</title>
 	</head>
 	<body>
-		<h1>Cadastro de Turnos</h1>
-		<hr>
-		<form action="/salvarTurno" method="post">
-				
-			<label for="nome">Turno:</label><br>
-			<input type="text" name="nome" id="nome" size="15"><br><br>
-	
-            <!-- INSERIR TITULAÇÕES -->
+		<div id="grid">
+			<header class="cabecalho-pagina constante">
+				<div class="banner-img">
+					<figure>
+						<img src="../fotos/banner.png" alt="banner" width="100%">
+					</figure>
+				</div>
+			</header>
 
-			<input type="submit" name="salvar" value="Salvar">
-			<input type="reset" name="limpar" value="Limpar">
-		</form>
+			<main>
+				<div class="main-pagina principal">
+					<h1>Cadastro de Turnos</h1>
+					<hr>
+					<form action="/salvarTurno" method="post">
+						<fieldset></fieldset>
+							<label for="nome">Turno:</label><br>
+							<input type="text" name="nome" id="nome" size="15"><br><br>
+
+							<input type="submit" name="salvar" value="Salvar">
+							<input type="reset" name="limpar" value="Limpar">
+						</fieldset>
+					</form>
+				</div>
+			</main>
+		</div>
 	</body>
 </html>
