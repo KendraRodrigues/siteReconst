@@ -20,6 +20,14 @@
 			<label for="modalidade_id">Modalidade:</label><br>
 			<input type="text" name="modalidade_id" id="modalidade_id" value="<%= cursos[0].modalidade_id %>" size="20"><br><br>
 
+			<!-- <label for="cpf_cliente">Teste de modalidade:</label><br>
+			<select name="cpf_cliente" id="cpf_cliente">
+				<option hidden>-- Selecione uma modalidade --</option>
+				<% modalidades.forEach((m, index) => { %>
+					<option value="<%= m.nome %>"><%= m.nome %></option>
+				<% }) %>
+			</select> -->
+
             <label for="turno_id">Turno:</label><br>
 			<input type="text" name="turno_id" id="turno_id" value="<%= cursos[0].turno_id %>" size="20"><br><br>
 			

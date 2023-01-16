@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Organizações Tabajara</title>
+    <meta charset="UTF-8">
+	<link href="estilos.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+	<div id="quadro">
+		<div id="cabecalho">
+			<img src="tabajara.jpg" align="left" width="150" style="padding-top: 10px; padding-left: 10px;">
+			<h1 align="center">Cadastro de Trabalho</h1>
+		</div>
+		<div id="corpo">
+			<p style="color: #000000; font-weight: bold;">Dados do Cliente</p>
+			<ul>
+				<li>Título: <%= param.getTitulo()%></li>
+                <li>Resumo: <%= param.getResumo()%></li>
+				<li>Palavras chave: <%= param.getPalavrasChave()%></li>
+				<li>Link: <%= param.getLink()%></li>
+				<li>Autor: <%= param.getAutorId()%></li>
+				<li>Orientador: <%= param.getOrientadorId()%></li>
+			</ul>
+		</div>
+		<div id="rodape">
+			<p class="resultado">
+				<%= msg%>
+			</p>
+			
+			<a href="/">Voltar ao Menu Principal</a>
+		</div>
+	</div>
+  </body>
+</html>

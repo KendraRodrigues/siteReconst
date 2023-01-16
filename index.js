@@ -15,6 +15,7 @@ const Modalidade = require('./model/Modalidade');
 const Turno = require('./model/Turno');
 const Curso = require('./model/Curso');
 const Aluno = require('./model/Aluno');
+const Trabalho = require('./model/Trabalho');
 
 var mysql = require('mysql');
 var con = mysql.createConnection({
@@ -280,6 +281,20 @@ app.get('/formCurso', function(req, res){
 	res.sendFile(__dirname + '/views/curso/form.html');
 });
 
+// app.get('/formCurso', function(req, res){
+// 	var c = new Curso();  
+//     // var s = new Servico(); 
+    
+// 	c.listar(con, function(result1){
+// 		// s.listar(con, function(result2){
+// 			res.render('curso/form.ejs', {cursos: result1});
+// 		// });
+// 	});
+	
+	
+// });
+
+
 app.post('/salvarCurso', function(req, res){
   
   try {
@@ -415,4 +430,87 @@ app.post('/atualizarAluno', function(req, res){
     console.log('Erro: '+e.message);
 	}
 	res.render('aluno/resultado.ejs', {param: a, msg: 'Aluno atualizado com sucesso!!!'});
+});
+
+/* Funções de Trabalhos */
+
+app.get('/trabalhos', function(req, res){
+
+  var t = new Trabalho();
+  t.listar(con, function(result){
+    res.render('trabalho/lista.ejs', {trabalhos: result});
+  })
+
+});
+
+app.post('/filtrarTrabalho', function(req, res){
+	var t = new Trabalho();
+	t.setTitulo(req.body.titulo);
+	
+	if (t.getTitulo() == '') {
+    t.setTitulo('%');
+	}
+	
+	t.pesquisar(con, function(result){
+		res.render('trabalho/lista.ejs', {trabalhos: result});
+	});
+});
+
+app.get('/formTrabalho', function(req, res){
+	res.sendFile(__dirname + '/views/trabalho/form.html');
+});
+
+app.post('/salvarTrabalho', function(req, res){
+  
+  try {
+    var t = new Trabalho();
+
+    t.setTitulo(req.body.titulo);
+    t.setResumo(req.body.resumo);
+    t.setPalavrasChave(req.body.palavras_chave);
+    t.setLink(req.body.link);
+    t.setAutorId(req.body.autor_id);
+    t.setOrientadorId(req.body.orientador_id);
+    
+    var retorno = t.inserir(con);
+      console.log('Aqui: ' + retorno);
+  } catch (e) {
+      console.log('Erro: '+e.message);
+  }
+	
+	res.render('trabalho/resultado.ejs', {param: t, msg: 'Trabalho registrado com sucesso!!!'});
+});
+
+app.post('/gerenciarTrabalho', function(req, res){
+	var t = new Trabalho();
+	if (req.body.acao == 'Excluir') {
+		t.setTitulo(req.body.titulo);
+	  t.deletar(con);
+		res.render('trabalho/resultado.ejs', {param: t, msg: 'Trabalho deletado com sucesso!!!'});
+	} else {
+		t.setTitulo(req.body.titulo);
+		t.consultarChave(con, function(result){
+			res.render('trabalho/form.ejs', {trabalhos: result});
+		});
+	}	
+});
+
+app.post('/atualizarTrabalho', function(req, res){
+  try {
+    
+    var t = new Trabalho();
+    
+    t.setTitulo(req.body.titulo);
+    t.setResumo(req.body.resumo);
+    t.setPalavrasChave(req.body.palavras_chave);
+    t.setLink(req.body.link);
+    t.setAutorId(req.body.autor_id);
+    t.setOrientadorId(req.body.orientador_id);
+		
+		var retorno = t.atualizar(con);
+		console.log('Aqui: ' + retorno);
+	} catch (e) {
+    console.log('Erro: '+e.message);
+	}
+	res.render('trabalho/resultado.ejs', {param: t, msg: 'Trabalho atualizado com sucesso!!!'});
 });

@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>Organizações Tabajara</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Lista de Trabalhos</h1>
+		<hr>
+
+        <form action="/filtrarTrabalho" method="post">
+
+            <label for="titulo">Título (use % como cartere coringa):</label><br>
+            <input type="text" name="titulo" id="titulo" size="30"><br><br>
+            
+            <input type="submit" name="filtrar" value="Filtrar">
+        
+        </form>
+
+		<a href="/formTrabalho">Novo Trabalho</a> &nbsp;
+		<a href="/">Voltar para Tela Principal</a>&nbsp;
+
+		<form action="/gerenciarTrabalho" method="post">
+			<input type="submit" name="acao" value="Excluir">
+			<input type="submit" name="acao" value="Atualizar">
+			<table border="1">
+				<tr>
+					<th>Seleção</th>
+					<th>Título</th>
+					<th>Resumo</th>
+					<th>Palavras chave</th>
+					<th>Link</th>
+					<th>Autor</th>
+					<th>Orientador</th>
+				</tr>
+				<% trabalhos.forEach((t, index) => { %>
+				<tr>
+					<td><input type="radio" name="titulo" value="<%= t.titulo %>"></td>
+					<td><%= t.titulo %></td>
+					<td><%= t.resumo %></td>
+					<td><%= t.palavras_chave %></td>
+					<td><%= t.link %></td>
+					<td><%= t.autor_id %></td>
+					<td><%= t.orientador_id %></td>
+				</tr>
+				<% }) %>
+			</table>
+		</form>
+	</body>
+</html>

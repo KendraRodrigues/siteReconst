@@ -70,7 +70,7 @@ FOREIGN KEY (professor_id) REFERENCES professores(id)
 CREATE TABLE trabalhos
 (
 id INT NOT NULL AUTO_INCREMENT,
-título VARCHAR (255) NOT NULL, 
+titulo VARCHAR (255) NOT NULL, 
 resumo VARCHAR (255) NOT NULL, 
 palavras_chave VARCHAR (255) NOT NULL,
 link VARCHAR (255) NOT NULL,
